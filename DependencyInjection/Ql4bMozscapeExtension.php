@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\Config\FileLocator;
 
 
-class Ql4bMandrillExtension extends Extension {
+class Ql4bMoscapeExtension extends Extension {
     
 	public function load(array $configs, ContainerBuilder $container){
 		
