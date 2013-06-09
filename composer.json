@@ -1,0 +1,20 @@
+{
+    "name": "ql4b/mozscape-bundle",
+    "description": "Symfony bundle to perform Seomoz Mozscape API queries",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Carlo D'Ambrosio",
+            "email": "carlo@ql4b.net"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "Ql4b\\Bundle\\MozscapeBundle": "" }
+    },
+    "target-dir": "Ql4b/Bundle/MozscapeBundle",
+    "minimum-stability": "stable",
+    "require": {
+	    "symfony/symfony": "2.3.*",
+	    "zendframework/zend-http": "2.1.*"
+    }
+}
