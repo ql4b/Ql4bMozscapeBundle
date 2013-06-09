@@ -7,7 +7,9 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\Config\FileLocator;
 
 
-class Ql4bMoscapeExtension extends Extension {
+class 
+Ql4bMozscapeExtension extends Extension {
+
     
 	public function load(array $configs, ContainerBuilder $container){
 		
