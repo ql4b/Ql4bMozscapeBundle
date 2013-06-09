@@ -30,6 +30,10 @@ class Configuration implements ConfigurationInterface
 					->isRequired()
                     ->cannotBeEmpty()
                 ->end()
+                ->scalarNode('secretKey')
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                ->end()
 	        ->end();
         
         return $treeBuilder;
