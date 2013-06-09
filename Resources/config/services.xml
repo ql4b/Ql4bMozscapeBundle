@@ -8,12 +8,14 @@
 		<parameter key="mozscape.client.class">Ql4b\Bundle\MozscapeBundle\Service\Api\Client</parameter>
 		<parameter key="mozscape.client.endpoint"></parameter>
 		<parameter key="mozscape.client.accessId"></parameter>
+		<parameter key="mozscape.client.secretKey"></parameter>
 	</parameters>
 	
     <services>
     	<service id="mozscape.client" class="%mozscape.client.class%">
     		<argument>%mozscape.client.endpoint%</argument>
     		<argument>%mozscape.client.accessId%</argument>
+    		<argument>%mozscape.client.secretKey%</argument>
     	</service>
 	</services>
 </container>
