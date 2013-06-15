@@ -65,7 +65,7 @@ class Client
     public function linkMetrics($targetUrl, Array $parameters = array() ){
         
         return $this->makeRequest(
-          	'link-metrics', 
+          	'links', 
             $targetUrl,
             $parameters
         );
