@@ -70,8 +70,16 @@ class Client
         $parameters = array_merge($parameters, $signatureParameters);
         $httpClient->setParameterGet($parameters);
         
-        $response = $httpClient->send();
-        return $response;
+        try {
+        
+            $response = $client->send();
+            return $response;
+        
+        } catch (HttpException\RuntimeException $e){
+        
+            throw new Exception($e->getMessage(), null, $e);
+        }
+        
         
     }
     
