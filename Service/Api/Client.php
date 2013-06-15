@@ -41,7 +41,11 @@ class Client
     
     }
     
-    
+    /**
+     * @param string $targetUrl
+     * @param array $parameters
+     * @return stdClass
+     */
     public function urlMetrics($targetUrl, Array $parameters = array ()){
         
         return $this->makeRequest(
@@ -57,7 +61,7 @@ class Client
      * @param string $targetUrl
      * @param array $parameters
      * @throws Exception
-     * @return Object
+     * @return stdClass
      */
     private function makeRequest($endpoint, $targetUrl, Array $parameters)
     {
