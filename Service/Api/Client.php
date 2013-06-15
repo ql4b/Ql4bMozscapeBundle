@@ -6,10 +6,13 @@ use Zend\Http\Request;
 
 class Client
 {
+    
+    const DEFAULT_EXPIRY = 300;
+    
     /**
      * @var string
      */
-    private $apiEndipoint;
+    private $apiBaseUrl;
 
     /**
      * @var string
@@ -27,16 +30,79 @@ class Client
     private static $httpClient;
     
     /**
-     * @param string $apiEndpoint
+     * @param string $apiBaseUrl
      * @param string $accessId
      */
-    public function __construct($apiEndpoint, $accessId, $secretKey){
+    public function __construct($apiBaseUrl, $accessId, $secretKey){
     
-        $this->apiEndpoint = $apiEndpoint;
+        $this->apiBaseUrl= $apiBaseUrl;
         $this->accessId = $accessId;
         $this->secretKey = $secretKey;
     
     }
+    
+    
+    public function urlMetrics($targetUrl, Array $parameters){
+        
+        return $this->makeRequest(
+        	'url-metrics', 
+            $targetUrl, 
+            $parameters
+        );
+        
+    }
+
+    private function makeRequest($endpoint, $targetUrl, Array $parameters)
+    {
+        $apiUrl = sprintf("%s/%s", 
+            $this->apiBaseUrl,
+            $endpoint
+        );
+        
+        $httpClient = self::getHttpClient();
+        
+        $uri = sprintf ("%s/%s", $apiUrl, urlencode($targetUrl));
+        $httpClient->setUri($uri);
+        
+        $signatureParameters = $this->getSignatureParams(); 
+        $parameters['AccessID'] = $this->accessId;
+        
+        $parameters = array_merge($parameters, $signatureParameters);
+        $httpClient->setParameterGet($parameters);
+        
+        $response = $httpClient->send();
+        return $response;
+        
+    }
+    
+    
+    /**
+     * @param integer $duration
+     * @return string
+     */
+    private function getSignatureParams($duration = null, $urlEncode = false)
+    {
+        $duration = ($duration === null ? self::DEFAULT_EXPIRY : $duration );
+        
+        $expires = time() + $duration;
+        
+        $data = sprintf("%s\n%s",
+        	$this->accessId,
+        	$expires
+        );
+        
+        $rawSignature = hash_hmac('sha1', $data, $this->secretKey, true);
+        $signature = base64_encode($rawSignature);
+        
+        if ($urlEncode === true)
+            $signature = urlencode($signature);
+
+        return array (
+        	'Expires'	=> $expires,
+        	'Signature'	=> $signature
+        );
+    }
+    
     
     /**
      * @return HttpClient
