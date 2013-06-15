@@ -89,7 +89,7 @@ abstract class AbstractClient
      * @param integer $duration
      * @return string
      */
-    private function getSignatureParams($duration = null)
+    private function getSignatureParams($duration = null, $urlEncode = false)
     {
         $duration = ($duration === null ? self::DEFAULT_EXPIRY : $duration );
         
@@ -101,7 +101,10 @@ abstract class AbstractClient
         );
         
         $rawSignature = hash_hmac('sha1', $data, $this->secretKey, true);
-        $signature = urlencode(base64_encode($rawSignature));
+        $signature = base64_encode($rawSignature);
+        
+        if ($urlEncode === true)
+            $signature = urlencode($signature);
 
         return array (
         	'Expires'	=> $expires,
