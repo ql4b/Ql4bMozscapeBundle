@@ -52,6 +52,13 @@ class Client
         
     }
 
+    /**
+     * @param string $endpoint
+     * @param string $targetUrl
+     * @param array $parameters
+     * @throws Exception
+     * @return Object
+     */
     private function makeRequest($endpoint, $targetUrl, Array $parameters)
     {
         $apiUrl = sprintf("%s/%s", 
@@ -73,8 +80,17 @@ class Client
         try {
         
             $response = $httpClient->send();
-            return $response;
-        
+            
+            $data = json_encode($response->getContent());
+            
+            if (null === $data)
+                throw new Exception("Cannot decode json response");
+            
+            if (isset ($data->status) && isset($data->error_message))
+                throw new Exception((string) $data->error_message, $data->status);
+            
+            return $data;
+            
         } catch (HttpException\RuntimeException $e){
         
             throw new Exception($e->getMessage(), null, $e);
