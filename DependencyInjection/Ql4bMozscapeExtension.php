@@ -19,7 +19,7 @@ Ql4bMozscapeExtension extends Extension {
 		$configuration = new Configuration();
 		$config = $this->processConfiguration($configuration, $configs);
 		
-		$container->setParameter('mozscape.client.endpoint', $config['endpoint']);
+		$container->setParameter('mozscape.client.apiBaseUrl', $config['apiBaseUrl']);
 		$container->setParameter('mozscape.client.accessId', $config['accessId']);
 		
 	}

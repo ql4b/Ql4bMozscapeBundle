@@ -22,7 +22,7 @@ class Configuration implements ConfigurationInterface
         
         $rootNode
             ->children()
-                ->scalarNode('endpoint')
+                ->scalarNode('apiBaseUrl')
 					->isRequired()
                     ->cannotBeEmpty()
 				->end()
