@@ -70,7 +70,7 @@ abstract class AbstractClient
     public function makeRequest($targetUrl, Array $parameters)
     {
         $httpClient = self::getHttpClient();
-        $uri = sprintf ("%s/%s", $this->getApiUrl(), urlencode($targetUrl))
+        $uri = sprintf ("%s/%s", $this->getApiUrl(), urlencode($targetUrl));
         $httpClient->setUri($uri);
         
         $signatureParameters = $this->getSignatureParams(); 
