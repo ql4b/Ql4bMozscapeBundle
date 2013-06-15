@@ -21,6 +21,7 @@ Ql4bMozscapeExtension extends Extension {
 		
 		$container->setParameter('mozscape.client.apiBaseUrl', $config['apiBaseUrl']);
 		$container->setParameter('mozscape.client.accessId', $config['accessId']);
+		$container->setParameter('mozscape.client.secretKey', $config['secretKey']);
 		
 	}
 }
