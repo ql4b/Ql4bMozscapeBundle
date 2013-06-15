@@ -77,7 +77,7 @@ abstract class AbstractClient
         $parameters['AccessID'] = $this->accessId;
         
         $parameters = array_merge($parameters, $signatureParameters);
-        $client->setParameterGet($parameters);
+        $httpClient->setParameterGet($parameters);
         
         $response->$client->send();
         return $response;
