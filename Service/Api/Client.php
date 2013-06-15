@@ -72,7 +72,7 @@ class Client
         
         try {
         
-            $response = $client->send();
+            $response = $httpClient->send();
             return $response;
         
         } catch (HttpException\RuntimeException $e){
