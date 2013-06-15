@@ -44,7 +44,7 @@ class Client
     /**
      * @param string $targetUrl
      * @param array $parameters
-     * @return stdClass
+     * @return \stdClass
      */
     public function urlMetrics($targetUrl, Array $parameters = array ()){
         
@@ -55,13 +55,73 @@ class Client
         );
         
     }
-
+    
+    /**
+     * 
+     * @param string $targetUrl
+     * @param array $parameters
+     * @return \stdClass
+     */
+    public function linkMetrics($targetUrl, Array $parameters = array() ){
+        
+        return $this->makeRequest(
+          	'link-metrics', 
+            $targetUrl,
+            $parameters
+        );
+    }
+    
+    /**
+     *
+     * @param string $targetUrl
+     * @param array $parameters
+     * @return \stdClass
+     */
+    public function anchorText($targetUrl, Array $parameters = array() ){
+    
+        return $this->makeRequest(
+            'anchor-text', 
+            $targetUrl,
+            $parameters
+        );
+    }
+    
+    /**
+     *
+     * @param string $targetUrl
+     * @param array $parameters
+     * @return \stdClass
+     */
+    public function topPages($targetUrl, Array $parameters = array() ){
+    
+        return $this->makeRequest(
+            'top-pages', 
+            $targetUrl,
+            $parameters
+        );
+    }
+    
+    /**
+     *
+     * @param string $targetUrl
+     * @param array $parameters
+     * @return \stdClass
+     */
+    public function metadata($command, Array $parameters = array() ){
+    
+        return $this->makeRequest(
+            'metadata', 
+            "$command.json",
+            $parameters
+        );
+    }
+    
     /**
      * @param string $endpoint
      * @param string $targetUrl
      * @param array $parameters
      * @throws Exception
-     * @return stdClass
+     * @return \stdClass
      */
     private function makeRequest($endpoint, $targetUrl, Array $parameters)
     {
