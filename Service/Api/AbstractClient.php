@@ -55,7 +55,7 @@ abstract class AbstractClient
      * @param string $apiEndPoint
      * @return string
      */
-    protected function setApiUrl($apiEndPoint)
+    public function setApiUrl($apiEndPoint)
     {
         $this->apiUrl = sprintf("%s/%s", 
             $this->apiBaseUrl,
