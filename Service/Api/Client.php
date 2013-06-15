@@ -145,7 +145,7 @@ class Client
         
             $response = $httpClient->send();
             
-            $data = json_decode($response->getContent());
+            $data = json_decode($response->getBody());
             
             if (null === $data)
                 throw new Exception("Cannot decode json response");
