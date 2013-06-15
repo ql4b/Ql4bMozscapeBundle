@@ -79,7 +79,7 @@ abstract class AbstractClient
         $parameters = array_merge($parameters, $signatureParameters);
         $httpClient->setParameterGet($parameters);
         
-        $response = $client->send();
+        $response = $httpClient->send();
         return $response;
         
     }
