@@ -42,7 +42,7 @@ class Client
     }
     
     
-    public function urlMetrics($targetUrl, Array $parameters){
+    public function urlMetrics($targetUrl, Array $parameters = array ()){
         
         return $this->makeRequest(
         	'url-metrics', 
