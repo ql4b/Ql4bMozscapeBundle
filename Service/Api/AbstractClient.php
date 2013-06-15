@@ -95,7 +95,7 @@ abstract class AbstractClient
         
         $expires = time() + $duration;
         
-        $data = sprintf("%s\%s",
+        $data = sprintf("%s\n%s",
         	$this->accessId,
         	$expires
         );
