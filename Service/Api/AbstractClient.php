@@ -103,7 +103,7 @@ abstract class AbstractClient
 
         return array (
         	'Expires'	=> $expires,
-        	'Signature'	=> $signatrue
+        	'Signature'	=> $signature
         );
     }
     
