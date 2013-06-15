@@ -22,8 +22,8 @@
     	</service>
     	<service id="mozscape.url_metrics" class="%mozscape.url_metrics.class%" parent="mozscape.client">
     	    <call method="setApiUrl">
-             <argument>%mozscape.url_metrics.endpoint%</argument>
-        </call>
+             	<argument>%mozscape.url_metrics.endpoint%</argument>
+        	</call>
     	</service>
 	</services>
 </container>

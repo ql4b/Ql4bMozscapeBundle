@@ -6,6 +6,9 @@ use Zend\Http\Request;
 
 abstract class AbstractClient
 {
+    
+    const DEFAULT_EXPIRY = 300;
+    
     /**
      * @var string
      */
@@ -62,6 +65,48 @@ abstract class AbstractClient
             $apiEndPoint
         );
     }
+    
+    
+    public function makeRequest($targetUrl, Array $parameters)
+    {
+        $httpClient = self::getHttpClient();
+        $uri = sprintf ("%s/%s", $this->getApiUrl(), urlencode($targetUrl))
+        $httpClient->setUri($uri);
+        
+        $signatureParameters = $this->getSignatureParams(); 
+        $parameters['AccessID'] = $this->accessId;
+        
+        $parameters = array_merge($parameters, $signatureParameters);
+        $client->setParameterGet($parameters);
+        
+        $response->$client->send();
+        return $response;
+        
+    }
+    
+    
+    /**
+     * @param integer $duration
+     * @return string
+     */
+    private function getSignatureParams($duration = null)
+    {
+        $expires = ($duration === null ? self::DEFAULT_EXPIRY : $duration );
+        
+        $data = sprintf("%s\%s",
+        	$this->accessId,
+        	$expires
+        );
+        
+        $rawSignature = hash_hmac('sha1', $data, $this->secretKey, true);
+        $signature = urlencode(base64_encode($rawSignature));
+
+        return array (
+        	'Expires'	=> $expires,
+        	'Signature'	=> $signatrue
+        );
+    }
+    
     
     /**
      * @return HttpClient
