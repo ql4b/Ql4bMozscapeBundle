@@ -62,7 +62,7 @@ class Client
      * @param array $parameters
      * @return \stdClass
      */
-    public function linkMetrics($targetUrl, Array $parameters = array('Scope' = 'page_to_page') ){
+    public function linkMetrics($targetUrl, Array $parameters = array('Scope' => 'page_to_page') ){
         
         return $this->makeRequest(
           	'links', 
