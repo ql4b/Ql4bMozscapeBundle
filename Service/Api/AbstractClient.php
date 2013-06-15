@@ -91,7 +91,9 @@ abstract class AbstractClient
      */
     private function getSignatureParams($duration = null)
     {
-        $expires = ($duration === null ? self::DEFAULT_EXPIRY : $duration );
+        $duration = ($duration === null ? self::DEFAULT_EXPIRY : $duration );
+        
+        $expires = time() + $duration;
         
         $data = sprintf("%s\%s",
         	$this->accessId,
